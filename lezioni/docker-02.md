@@ -23,6 +23,13 @@
 - docker-compose -f compose-mysql.yml down
 - docker network ls
 
+## Comandi GIT visti a lezione (per risolvere l'esercizio 2 sulla VM)
+- git clone https://github.com/andrea-colleoni/ipzs-2021-sessione-2.git
+- apt install default-jdk
+- cd ipzs-2021-sessione-2/ 
+- sh mvnw package
+- docker-compose up -d
+
 ## Links utili
 - [Java Remote Debugging](https://stackify.com/java-remote-debugging/)
 - [Spring Boot e Docker](https://spring.io/guides/gs/spring-boot-docker/)
