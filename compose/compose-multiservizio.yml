@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+    cnt01:
+        image: nginx
+        networks:
+        - my_net
+    cnt02:
+        image: nginx
+        networks:
+        - my_net
+networks:
+    my_net:
