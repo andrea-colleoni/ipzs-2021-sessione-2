@@ -19,6 +19,9 @@
 - docker build -t ipzs/nginx-nano:latest . 
 - docker image rm ipzs/nginx-nano:latest
 - docker run -itd --rm --name db-01 -v mysql_data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=passw0rd -p 3306:3306 mysql
+- docker-compose -f compose-mysql.yml up -d
+- docker-compose -f compose-mysql.yml down
+- docker network ls
 
 ## Links utili
 - [Java Remote Debugging](https://stackify.com/java-remote-debugging/)
