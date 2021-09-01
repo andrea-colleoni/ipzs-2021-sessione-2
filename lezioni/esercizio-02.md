@@ -4,4 +4,5 @@
 
 - Preparare l'API REST in Spring Boot
 - Definire il file compose con:
-  - Un reverse proxy
+  - Un reverse proxy NGINX che punti all'API
+  - Un container costruito dalla buil del DOckerfile presente nel progetto Spring Boot
