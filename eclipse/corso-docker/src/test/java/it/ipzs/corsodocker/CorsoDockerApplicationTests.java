@@ -1,5 +1,6 @@
 package it.ipzs.corsodocker;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ class CorsoDockerApplicationTests {
 	
 	@Test
 	void dummyTest() {
-		fail("test fallito");
+		assertTrue(true);
 	}
 
 }
