@@ -18,27 +18,48 @@ pipeline {
                     url: 'https://github.com/andrea-colleoni/ipzs-2021-sessione-2.git'
             }
         }
-        stage('Pulizia') {
-            steps {
-                dir('eclipse/corso-docker') {
-                    sh 'mvn clean'
-                }
+        stage('Build') {
+            parallel {
+                stage('Backend') {
+                    stages {
+                        stage('Pulizia') {
+                            steps {
+                                dir('eclipse/corso-docker') {
+                                    sh 'mvn clean'
+                                }
+                            }
+                        }
+                        stage('Compilazione') {
+                            steps {
+                                dir('eclipse/corso-docker') {
+                                    sh 'mvn -Dmaven.test.skip=true compile'
+                                }
+                            }
+                        }
+                        stage('Test & Package') {
+                            steps {
+                                dir('eclipse/corso-docker') {
+                                    sh 'mvn package'
+                                }
+                            }
+                        }
+                    }
+                }  
+                stage('Frontend') {
+                    stages {
+                        stage('NPM install') {
+                            dir('frontend/webapp') {
+                                withNPM {
+                                    install
+                                }
+                            }
+                        }
+                    }
+                }  
             }
         }
-        stage('Compilazione') {
-            steps {
-                dir('eclipse/corso-docker') {
-                    sh 'mvn -Dmaven.test.skip=true compile'
-                }
-            }
-        }
-        stage('Test & Package') {
-            steps {
-                dir('eclipse/corso-docker') {
-                    sh 'mvn package'
-                }
-            }
-        }
+           
+        
     }
 
     post {
