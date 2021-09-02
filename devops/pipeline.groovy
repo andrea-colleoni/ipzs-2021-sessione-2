@@ -64,18 +64,18 @@ pipeline {
                         }
                         stage('ZIP dist') {
                             steps {
-                                zip archive: true, 
-                                    dir: 'frontend/webapp/dist/webapp',
-                                    overwrite: true, 
-                                    zipFile: 'frontend.zip'
+                                script {
+                                    zip archive: true, 
+                                        dir: 'frontend/webapp/dist/webapp',
+                                        overwrite: true, 
+                                        zipFile: 'frontend.zip'
+                                }
                             }
                         }   
                     }
                 }  
             }
         }
-           
-        
     }
 
     post {
