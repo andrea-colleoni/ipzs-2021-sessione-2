@@ -2,6 +2,11 @@
 
 ## Argomenti
 - Pipeline in Jenkins: definizione di un job con linguaggio dichiarativo
+  - Stages e steps
+  - Actions
+  - Pipeline Sytax Helper
+  - Variabili della build
+  - Usare una pipeline da SCM
 - Build di progetti Angular
 - Deployment
   - Con strumenti classici
