@@ -28,7 +28,7 @@ pipeline {
         stage('Compilazione') {
             steps {
                 dir('eclipse/corso-docker') {
-                    sh 'mvn compile'
+                    sh 'mvn -Dmaven.test.skip=true compile'
                 }
             }
         }
@@ -38,6 +38,12 @@ pipeline {
                     sh 'mvn package'
                 }
             }
-        }           
+        }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: 'eclipse/corso-docker/target/*.jar', followSymlinks: false
+        }
     }
 }
