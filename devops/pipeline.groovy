@@ -45,5 +45,22 @@ pipeline {
         success {
             archiveArtifacts artifacts: 'eclipse/corso-docker/target/*.jar', followSymlinks: false
         }
+        always {
+            junit 'eclipse/corso-docker/target/surefire-reports/*.xml'
+            writeFile encoding: 'UTF-8', 
+                file: 'BUILD.md', 
+                text: """# Informazioni di build
+
+__Data build__: """ + new java.util.Date().toString() + """
+__Progetto__: ${env.JOB_NAME} INSTABILE
+__Build n. ${env.BUILD_NUMBER}__: ${currentBuild.result}"""     
+            archiveArtifacts artifacts: 'BUILD.md', followSymlinks: false
+        }
+        unstable {
+            mail to: 'andrea@colleoni.info',
+                 body: """Progetto: ${env.JOB_NAME} INSTABILE
+                 Build n. ${env.BUILD_NUMBER} ${currentBuild.result}""", 
+                 subject: "Progetto: ${env.JOB_NAME} INSTABILE- Build n. ${env.BUILD_NUMBER} ${currentBuild.result}"
+        }        
     }
 }
