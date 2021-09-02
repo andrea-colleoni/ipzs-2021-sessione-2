@@ -4,6 +4,7 @@ pipeline {
     tools {
       jdk 'Jdk-11'
       maven 'Maven 3.8.2'
+      nodejs 'NodeJS 16.8'
     }
 
     stages {
@@ -48,12 +49,27 @@ pipeline {
                 stage('Frontend') {
                     stages {
                         stage('NPM install') {
-                            dir('frontend/webapp') {
-                                withNPM {
-                                    install
+                            steps {
+                                dir('frontend/webapp') {
+                                    sh 'npm install'
                                 }
                             }
                         }
+                        stage('NG build') {
+                            steps {
+                                dir('frontend/webapp') {
+                                    sh 'npm run build'
+                                }
+                            }
+                        }
+                        stage('ZIP dist') {
+                            steps {
+                                zip archive: true, 
+                                    dir: 'frontend/webapp/dist/webapp',
+                                    overwrite: true, 
+                                    zipFile: 'frontend.zip'
+                            }
+                        }   
                     }
                 }  
             }
