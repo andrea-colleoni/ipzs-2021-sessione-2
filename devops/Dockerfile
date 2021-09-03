@@ -1,4 +1,4 @@
-FROM jenkins/jenkins
+FROM jenkins/jenkins:lts-jdk11
 
 # Docker install
 USER root
@@ -16,4 +16,4 @@ RUN add-apt-repository \
        stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
 
-USER jenkins
+# USER jenkins
