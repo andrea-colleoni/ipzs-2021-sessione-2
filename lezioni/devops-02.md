@@ -12,6 +12,11 @@
   - Con strumenti classici
   - Con Docker
 
+- Uso dei links delle build
+  - http://localhost:8080/job/prima-pipeline/lastSuccessfulBuild/artifact/frontend.zip
+http://localhost:8080/job/prima-pipeline/15/artifact/eclipse/corso-docker/target/corso-docker-0.0.1-SNAPSHOT.jar
+  - http://localhost:8080/job/prima-pipeline/lastSuccessfulBuild/backend.jar
+
 ## Comandi visti a lezione
 - docker build  -t andrea/docker-jenkins:latest .
 - docker run --rm -p 8080:8080 -v C:\Users\andre\Desktop\Temp\Corsi\Avalon\Zecca\sessione-2\jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock andrea/docker-jenkins
